@@ -4,10 +4,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/sigma.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/plugins/sigma.parsers.json.min.js"></script>
     <style type="text/css">
-      html {
-        width: 100%;
-        height: 100%;
-      }
+      html,
       #content {
         width: 100%;
         height: 100%;
@@ -18,19 +15,24 @@
     <div id="content"></div>
 
     <script>
-      var n = [
+      // define the nodes/people
+      var people = [
         { id: "n0", label: "Scott", x: 0, y: 0, size: 20, color: "#000000" },
         { id: "n1", label: "David", x: 1, y: 1, size: 10, color: "#ff0000" },
         { id: "n2", label: "Amanda", x: 1, y: 0, size: 5, color: "#0000ff" },
       ];
 
-      var e = [
+      // define how the relationships between them using the ID parameters
+      var relationships = [
         { id: "e0", source: "n0", target: "n1" },
         { id: "e1", source: "n0", target: "n2" },
       ];
 
-      var g = { nodes: n, edges: e };
+      // combine those two as a graph object
+      var g = { nodes: people, edges: relationships };
 
+      // create a new sigma object
+      // define the html element that will contain it, in this case as a canvas
       s = new sigma({
         graph: g,
         renderer: {
@@ -43,11 +45,7 @@
         },
       });
 
-      for (node of data) {
-        s.graph.addNode(node);
-      }
-
-      s.refresh();
+      //done!
     </script>
   </body>
 </html>
