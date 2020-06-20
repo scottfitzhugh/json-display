@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <title>JSON Display Test</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/sigma.min.js"
+      integrity="sha256-ii2D7w2jthCadZtIl2OjRn2vu1iEtGWcOrmd+UOZorc="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/plugins/sigma.parsers.json.min.js"
+      integrity="sha256-4EvXKAACf2UPb+npycjxOlBwf8QqjL2k+zggPOF+tE4="
+      crossorigin="anonymous"
+    ></script>
+
+    <style type="text/css">
+      html,
+      0,
+      body {
+        width: 100%;
+      }
+      #content {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content"></div>
+
+    <script>
+      var data = [
+        { id: "n0", label: "Scott", x: 0, y: 0, size: 20, color: "#00ff00" },
+        {
+          id: "n1",
+          label: "David",
+          source: "n0",
+          x: 1,
+          y: 1,
+          size: 10,
+          color: "#ff0000",
+        },
+        {
+          id: "n2",
+          label: "Amanda",
+          source: "n0",
+          x: 1,
+          y: 0,
+          size: 5,
+          color: "#0000ff",
+        },
+      ];
+
+      s = new sigma({
+        graph: data,
+        renderer: {
+          container: document.getElementById("content"),
+          type: "canvas",
+        },
+        settings: {
+          minNodeSize: 8,
+          maxNodeSize: 16,
+        },
+      });
+
+      for (node of data) {
+        s.graph.addNode(node);
+      }
+
+      s.refresh();
+    </script>
+  </body>
+</html>
