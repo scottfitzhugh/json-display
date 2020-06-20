@@ -1,22 +1,12 @@
 <html>
   <head>
     <title>JSON Display Test</title>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/sigma.min.js"
-      integrity="sha256-ii2D7w2jthCadZtIl2OjRn2vu1iEtGWcOrmd+UOZorc="
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/plugins/sigma.parsers.json.min.js"
-      integrity="sha256-4EvXKAACf2UPb+npycjxOlBwf8QqjL2k+zggPOF+tE4="
-      crossorigin="anonymous"
-    ></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/sigma.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/plugins/sigma.parsers.json.min.js"></script>
     <style type="text/css">
-      html,
-      0,
-      body {
+      html {
         width: 100%;
+        height: 100%;
       }
       #content {
         width: 100%;
@@ -28,30 +18,21 @@
     <div id="content"></div>
 
     <script>
-      var data = [
-        { id: "n0", label: "Scott", x: 0, y: 0, size: 20, color: "#00ff00" },
-        {
-          id: "n1",
-          label: "David",
-          source: "n0",
-          x: 1,
-          y: 1,
-          size: 10,
-          color: "#ff0000",
-        },
-        {
-          id: "n2",
-          label: "Amanda",
-          source: "n0",
-          x: 1,
-          y: 0,
-          size: 5,
-          color: "#0000ff",
-        },
+      var n = [
+        { id: "n0", label: "Scott", x: 0, y: 0, size: 20, color: "#000000" },
+        { id: "n1", label: "David", x: 1, y: 1, size: 10, color: "#ff0000" },
+        { id: "n2", label: "Amanda", x: 1, y: 0, size: 5, color: "#0000ff" },
       ];
 
+      var e = [
+        { id: "e0", source: "n0", target: "n1" },
+        { id: "e1", source: "n0", target: "n2" },
+      ];
+
+      var g = { nodes: n, edges: e };
+
       s = new sigma({
-        graph: data,
+        graph: g,
         renderer: {
           container: document.getElementById("content"),
           type: "canvas",
